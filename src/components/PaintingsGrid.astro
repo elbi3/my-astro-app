@@ -1,1 +1,49 @@
-import {Image} from "astro:assets";
+---
+import { Image } from "astro:assets";
+
+import purple from "../assets/paintings/black-but-purple-shoes.png";
+import treads from "../assets/paintings/color-treads.png";
+import favorites from "../assets/paintings/favorites.png";
+import noLaces1 from "../assets/paintings/no-laces-horizontal.png";
+import noLaces2 from "../assets/paintings/no-laces-left-right.png";
+import noLaces3 from "../assets/paintings/no-laces-vertical.png";
+import orangeBlue from "../assets/paintings/orange-and-blue-shoes.png";
+//pre-define "alt" text outside of array of objects?
+const paintings = [
+    {src: purple, class: "my-painting", alt: "oil painting"},
+    {src: treads, class: "my-painting", alt: "oil painting"},
+    {src: favorites, class: "my-painting", alt: "oil painting"},
+    {src: noLaces1, class: "my-painting", alt: "oil painting"},
+    {src: noLaces2, class: "my-painting", alt: "oil painting"},
+    {src: noLaces3, class: "my-painting", alt: "oil painting"},
+    {src: orangeBlue, class: "my-painting", alt: "oil painting"},
+];
+---
+
+<section class="paintings">
+    {paintings.map((e, index) => (
+        <div class={e.class}>
+            <Image 
+            src={e.src}
+            alt={e.alt}
+            widths={[400, 800, 1600]}
+            formats={["webp", "png"]}
+            sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            loading={index < 4 ? "eager" : "lazy"}
+            />
+        </div>
+    ))}
+    <!-- <Image src={purple} alt="oil painting of black running shoes with shades of purple" />
+    <Image src={treads} alt="oil painting of colorful treads on running shoe soles" />
+    <Image src={favorites} alt="oil painting of my favorite running shoes which have a pink stripe on the side" />
+    <Image src={noLaces1} alt="oil painting of shoes without laces" />
+    <Image src={noLaces2} alt="oil painting of shoes without laces" />
+    <Image src={noLaces3} alt="oil painting of shoes without laces" />
+    <Image src={orangeBlue} alt="oil painting of blue and orange shoes" /> -->
+</section>
+
+<style>
+    .paintings {
+        display: grid;
+    }
+</style>

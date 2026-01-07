@@ -11,5 +11,8 @@ export default defineConfig({
     },
     imageService: "cloudflare",
   }),
+  build: {
+    assetsPrefix: "https://img.plant-kennel.me"
+  },
   output: "static"
 });
