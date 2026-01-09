@@ -6,44 +6,127 @@ import treads from "../assets/paintings/color-treads.png";
 import favorites from "../assets/paintings/favorites.png";
 import noLaces1 from "../assets/paintings/no-laces-horizontal.png";
 import noLaces2 from "../assets/paintings/no-laces-left-right.png";
-import noLaces3 from "../assets/paintings/no-laces-vertical.png";
+import noLaces3pink from "../assets/paintings/no-laces-vertical.png";
 import orangeBlue from "../assets/paintings/orange-and-blue-shoes.png";
 //pre-define "alt" text outside of array of objects?
 const paintings = [
-    {src: purple, class: "my-painting", alt: "oil painting"},
-    {src: treads, class: "my-painting", alt: "oil painting"},
-    {src: favorites, class: "my-painting", alt: "oil painting"},
-    {src: noLaces1, class: "my-painting", alt: "oil painting"},
-    {src: noLaces2, class: "my-painting", alt: "oil painting"},
-    {src: noLaces3, class: "my-painting", alt: "oil painting"},
-    {src: orangeBlue, class: "my-painting", alt: "oil painting"},
+    {src: favorites, class: "my-painting pic-a", alt: "oil painting"},
+    {src: orangeBlue, class: "my-painting pic-b", alt: "oil painting"},
+    {src: treads, class: "my-painting pic-c", alt: "oil painting"},
+    {src: noLaces3pink, class: "my-painting pic-d", alt: "oil painting"},
+    {src: noLaces2, class: "my-painting pic-e", alt: "oil painting"},
+    {src: noLaces1, class: "my-painting pic-f", alt: "oil painting"},
+    {src: purple, class: "my-painting pic-g", alt: "oil painting"},
 ];
 ---
 
-<section class="paintings">
+<section class="paintings layout-a">
     {paintings.map((e, index) => (
-        <div class={e.class}>
+        // <div class={e.class}>
             <Image 
             src={e.src}
             alt={e.alt}
+            class={e.class}
             widths={[400, 800, 1600]}
             formats={["webp", "png"]}
             sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw"
             loading={index < 4 ? "eager" : "lazy"}
             />
-        </div>
+        // </div>
     ))}
-    <!-- <Image src={purple} alt="oil painting of black running shoes with shades of purple" />
-    <Image src={treads} alt="oil painting of colorful treads on running shoe soles" />
-    <Image src={favorites} alt="oil painting of my favorite running shoes which have a pink stripe on the side" />
-    <Image src={noLaces1} alt="oil painting of shoes without laces" />
-    <Image src={noLaces2} alt="oil painting of shoes without laces" />
-    <Image src={noLaces3} alt="oil painting of shoes without laces" />
-    <Image src={orangeBlue} alt="oil painting of blue and orange shoes" /> -->
 </section>
+<!-- <Image src={treads} alt="oil painting of colorful treads on running shoe soles" />
+<Image src={favorites} alt="oil painting of my favorite running shoes which have a pink stripe on the side" />
+<Image src={noLaces1} alt="oil painting of shoes without laces" />
+<Image src={noLaces2} alt="oil painting of shoes without laces" />
+<Image src={noLaces3pink} alt="oil painting of shoes without laces" />
+<Image src={orangeBlue} alt="oil painting of blue and orange shoes" />
+<Image src={purple} alt="oil painting of black running shoes with shades of purple" /> -->
 
+<!-- Art Grid Styling  -->
 <style>
+    /* grid container */
     .paintings {
         display: grid;
+        gap: .3rem;
+        max-width: 60vw;
+        max-height: 60vh;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        aspect-ratio: 1 / 1;
     }
+
+    .paintings.layout-a {
+        grid-template-areas: 
+            "a a a c c c"
+            "a a a b b e"
+            "a a a b b e"
+            "f f d b b e"
+            "f f d g g g"
+            "f f d g g g"
+    }
+    /* grid items */
+    .my-painting {
+        display: block; 
+        /* ^picture defaults to inline */
+        width: 100%;
+        height: 100%;
+        /* ^aspect-ratio goes on the grid item, not on the image itself: sizing grid items, not item's contents */
+    }
+    
+
+    /* img (child of picture) */
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* ^preserves aspect ratio and crops instead of squishing */
+        
+    }
+
+    .pic-a {
+        grid-area: a;
+    }
+    .pic-b {
+        grid-area: b;
+    }
+    
+    .pic-c {
+        grid-area: c;
+    }
+  
+    .pic-d {
+        grid-area: d;
+        object-position: bottom left;
+    }
+
+    .pic-e {
+        grid-area: e;
+    }
+
+    .pic-f {
+        grid-area: f;
+    }
+    .pic-f img {
+        object-position: top right;
+    }
+    .pic-g {
+        grid-area: g;
+    }
+    /* .pic-a img {
+        object-position: left center;
+    }
+    .pic-b img {
+        object-position: right;
+    }
+    .pic-c img{
+        object-position: bottom;
+    } */
+    /* .pic-d img {
+        object-position: center top;
+    }
+    .pic-e img {
+        object-position: center bottom;
+    } */
 </style>
