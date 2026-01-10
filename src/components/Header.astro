@@ -1,10 +1,17 @@
+---
+import Dice from "./Dice.vue"
+---
+
 <header class="home-header">
+    <Dice client:visible />
     <h1>Plant Kennel</h1>
 </header>
 
 <style>
     .home-header {
-        height: 10vh;
+        display: flex;
+        flex-direction: row;
+        max-height: 10vh;
         background-color: rgb(154, 154, 154);
         color: rgb(3, 30, 36);
     }
