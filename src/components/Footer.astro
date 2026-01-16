@@ -1,17 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+
+---
+
 <footer class="home-footer">
     <ul>
-        <li><a href="https://github.com/elbi3">Github</a></li>
-        <li><a href="https://www.linkedin.com/in/el-brewster/">LinkedIn</a></li>
+        <li>
+            <a href="https://github.com/elbi3"><Icon name="mdi:github" class="a-tag-icon" /></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/in/el-brewster/"><Icon name="mdi:linkedin" class="a-tag-icon"/></a>
+        </li>
     </ul>
 </footer>
 
 <style>
     .home-footer {
-        background-color: inherit;
+        background-color: mediumslateblue;
+        color: inherit;
+        padding: .5rem;
     }
 
     ul {
         display: flex;
         align-items: start;
+        gap: 3ch;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .a-tag-icon {
+        color: whitesmoke;
     }
 </style>

@@ -1,14 +1,18 @@
 ---
 import PaintingsGrid from "../components/PaintingsGrid.astro";
+import ClickSwap from "../components/ClickSwap.vue";
 // import Dice from "../components/Dice.vue";
 ---
 
 <main>
     <!-- <Dice client:visible /> -->
     <PaintingsGrid />
+    <ClickSwap client:visible/>
 </main>
 
 
 <style>
-    
+    main {
+        /* flex: 1; */
+    }
 </style>
