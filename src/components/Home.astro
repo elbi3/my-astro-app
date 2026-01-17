@@ -2,9 +2,19 @@
 import PaintingsGrid from "../components/PaintingsGrid.astro";
 import ClickSwap from "../components/ClickSwap.vue";
 // import Dice from "../components/Dice.vue";
+import { openWeatherFetch } from "../lib/weatherAPI.server.js";
+// let data = openWeatherFetch();
+// let display = data.current;
+import { oneWeather } from "../lib/mockWeatherAPI.js";
+let display = oneWeather.main.temp;
+console.log("oneWeather in Home: ", oneWeather);
 ---
 
 <main>
+    <section>
+        <h2>weather stuff</h2>
+        <div>{display}</div>
+    </section>
     <!-- <Dice client:visible /> -->
     <PaintingsGrid />
     <ClickSwap client:visible/>
@@ -13,6 +23,6 @@ import ClickSwap from "../components/ClickSwap.vue";
 
 <style>
     main {
-        /* flex: 1; */
+        color: whitesmoke;
     }
 </style>

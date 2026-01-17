@@ -1,4 +1,5 @@
 <script setup>
+    import { Icon } from "@iconify/vue";
     import IconDie1 from './icons/IconDie1.vue';
     import IconDie2 from './icons/IconDie2.vue';
     import IconDie3 from './icons/IconDie3.vue';
@@ -9,6 +10,8 @@
     import { useStore } from "@nanostores/vue";
     import { diceValue, rollDice } from '../stores/dice';
 
+    // const { name, size = '1em', class: className = ''} = Astro.props;
+    // <Icon icon={name} width={size} height={size} class={className} />
     // const diceStore = useDiceStore();
     const value = useStore(diceValue);
     // const getDiceSymbol = () => {
@@ -31,12 +34,33 @@
         5: IconDie5,
         6: IconDie6,
     };
-
+    // const diceIcons = {
+    //     1: 'mdi:die-1',
+    //     2: 'mdi:die-2',
+    //     3: 'mdi:die-3',
+    //     4: 'mdi:die-4',
+    //     5: 'mdi:die-5',
+    //     6: 'mdi:die-6',
+    // };
     const getDiceSymbol = () => diceIcons[value.value] ?? IconDie1;
+    // const getDiceSymbol = () => diceIcons[value.value] ?? "mdi:die-1";
 </script>
-
 <template>
-    <div class="dicebox">
+<!-- <Icon icon="mdi:die-1" width="2.5em" height="2.5em" />
+<Icon icon="mdi:die-2" width="2.5em" height="2.5em" />
+<Icon icon="mdi:die-3" width="2.5em" height="2.5em" />
+<Icon icon="mdi:die-4" width="2.5em" height="2.5em" />
+<Icon icon="mdi:die-5" width="2.5em" height="2.5em" />
+<Icon icon="mdi:die-6" width="2.5em" height="2.5em" /> -->
+<div class="dicebox">
+    <!-- <Icon :icon="getDiceSymbol()" class="dice-button" @click="rollDice()" /> -->
         <component :is="getDiceSymbol()" @click="rollDice()" />
     </div>
 </template>
+
+<style>
+    .dice-button {
+        width: 2.5em;
+        height: 2.5em;
+    }
+</style>

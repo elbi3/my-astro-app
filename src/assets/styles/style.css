@@ -88,3 +88,21 @@ textarea:not([rows]) {
   padding: 0;
   margin: 0;
 } 
+
+/* -------root-tooling?----------------------*/
+/* :root {
+  --hue-base: 210;
+  --hue-shift: 0deg;
+
+  --temp-warmth: 0;        /* -1 → 1 */
+  --light-level: 1;       /* 0.8 → 1.1 */
+  --contrast-level: 1;    /* 0.9 → 1.05 */
+} */
+
+:root {
+  --bg-h: calc(var(--hue-base) + var(--hue-shift));
+  --bg-s: 10%;
+  --bg-l: calc(96% * var(--light-level));
+
+  --text-l: calc(15% * var(--contrast-level));
+}
