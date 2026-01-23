@@ -1,5 +1,5 @@
-let lat = "47.579444";
-let lon = "-122.311389";
+let lat = import.meta.env.PUBLIC_WEATHER_LAT;
+let lon = import.meta.env.PUBLIC_WEATHER_LON;
 
 // saving for params placement:
 // let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${API key}`;
