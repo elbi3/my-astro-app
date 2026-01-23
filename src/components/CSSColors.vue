@@ -1,7 +1,9 @@
 <!-- with no "client" directive, this will default to static render (desired) -->
 
 <template>
-    <h1>140 Color Names Supported By All Browsers</h1>
+    <header>
+        <h1>140 Color Names Supported By All Browsers</h1>
+    </header>
     <div class="content">
         <div class="light aliceblue">aliceblue</div>
         <div class="light antiquewhite">antiquewhite</div>
@@ -734,5 +736,9 @@
 
 .yellowgreen {
     background-color: yellowgreen;
+}
+h1 {
+    line-height: 2;
+    color: aliceblue;
 }
 </style>

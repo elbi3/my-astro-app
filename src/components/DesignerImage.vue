@@ -1,5 +1,5 @@
 <template>
-    <img src="../assets/pictures/meme.jpg" alt="Very classy black guy wearing all turqoise and leaning against his matching turqoise sports vehicle while casually holding the handles of his turqoise Luis Vitton bag" class="fashion-img">
+    <img src="/images/meme.png" alt="Very classy black guy wearing all turqoise and leaning against his matching turqoise sports vehicle while casually holding the handles of his turqoise Luis Vitton bag" class="fashion-img">
 </template>
 
 <style scoped>

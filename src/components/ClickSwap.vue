@@ -7,8 +7,8 @@
 
 <template>
     <div @click="flower = !flower">
-        <div v-if="flower"><component :is=FlowerImage /></div>
-        <div v-else="meme"><component :is=DesignerImage /></div>
+        <div v-if="flower"><component :is="FlowerImage" /></div>
+        <div v-else><component :is="DesignerImage" /></div>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 
 <template>
-    <img src="../assets/pictures/pink-flower.jpg" alt="pink flower" class="flower-img">
+    <img src="images/pink-flower.png" alt="pink flower" class="flower-img">
 </template>
 
 <style scoped>

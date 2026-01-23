@@ -1,9 +1,37 @@
 ---
 import Home from '../components/Home.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ClickSwap from '../components/ClickSwap.vue';
 import "../assets/styles/style.css"
 ---
 
-<Layout>
-	<Home />
-</Layout>
+<BaseLayout>
+	<main>
+		<section>
+				<div class="toolbox">
+			<h2>TOOLBOX</h2>
+			<p><a href="/css-colors/">color ratio tool</a></p>
+		</div>
+		</section>
+		<section>
+			<h2>weather stuff</h2>
+			<!-- <div>{display}</div> --> 
+		</section>
+		<section>
+			<ClickSwap client:visible/>
+		</section>
+		<!-- put sections here instead of Home component  -->
+	</main>
+</BaseLayout>
+
+<style>
+    main {
+        color: whitesmoke;
+    }
+    .toolbox {
+        padding: .5em;
+        margin: .5em;
+        width: 20%;
+        border: 1px solid aliceblue;
+    }
+</style>
