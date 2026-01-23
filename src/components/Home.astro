@@ -1,14 +1,40 @@
 ---
 import PaintingsGrid from "../components/PaintingsGrid.astro";
+import ClickSwap from "../components/ClickSwap.vue";
 // import Dice from "../components/Dice.vue";
+import { openWeatherFetch } from "../lib/weatherAPI.server.js";
+// let data = openWeatherFetch();
+// let display = data.current;
+import { oneWeather } from "../lib/mockWeatherAPI.js";
+
+// let display = oneWeather.main.temp;
+// console.log("oneWeather in Home: ", oneWeather);
 ---
 
 <main>
+
+    <section>
+        <h2>weather stuff</h2>
+        <!-- <div>{display}</div> --> 
+    </section>
+    <div class="toolbox">
+        <h2>TOOLBOX</h2>
+        <p><a href="/css-colors/">color ratio tool</a></p>
+    </div>
     <!-- <Dice client:visible /> -->
-    <PaintingsGrid />
+    <!-- <PaintingsGrid /> -->
+    <ClickSwap client:visible/>
 </main>
 
 
 <style>
-    
+    main {
+        color: whitesmoke;
+    }
+    .toolbox {
+        padding: .5em;
+        margin: .5em;
+        width: 20%;
+        border: 1px solid aliceblue;
+    }
 </style>

@@ -12,6 +12,7 @@
       "./worker-configuration.d.ts",
       "node"
     ],
-    "jsx": "preserve"
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }

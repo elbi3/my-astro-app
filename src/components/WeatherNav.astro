@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+import { openWeatherFetch } from "../lib/weatherAPI.server.js";
+// let data = openWeatherFetch();
+// let display = data.current;
+import { oneWeather } from "../lib/mockWeatherAPI.js"; //use mock data for now
+let forecast = oneWeather.weather[0].main;
+console.log("oneWeather.weather[0].main: ", oneWeather.weather[0].main);
+---
+
+
+<nav>
+    <ul>
+        <li>
+            <a href="/about">about</a>
+        </li>
+        <li>
+            <p>{forecast}</p>
+        </li>
+        <li>
+            <Icon name="mdi:weather-night-partly-cloudy" class="nav-weather-icon" />
+        </li>
+    </ul>
+
+</nav>
+
+<style>
+    ul {
+        display: flex;
+        align-items: start;
+        gap: 3ch;
+    }
+
+    li {
+        list-style: none;
+    }
+</style>

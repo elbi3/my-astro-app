@@ -80,7 +80,7 @@ textarea:not([rows]) {
 /* -------end-reset------------------------ */
 
 .dice-button {
-  border: 1px solid white;
+  border: 1px solid mediumslateblue;
   border-radius: .25rem;
   background: none;
   border: none;
@@ -88,3 +88,30 @@ textarea:not([rows]) {
   padding: 0;
   margin: 0;
 } 
+
+/* -------root-tooling?----------------------*/
+:root {
+  --sky-lightness: 92%;
+  --accent-alpha: 0.15;
+}
+
+html[data-weather="rain"] {
+  --sky-lightness: 75%;
+  --accent-alpha: 0.3;
+}
+
+body {
+  background: hsl(210, 40%, var(--sky-lightness));
+}
+
+/* -----nav-and-weather-icons------------------ */
+nav {
+  min-height: 5vh;
+  background-color: mediumslateblue;
+}
+
+.nav-weather-icon {
+  color: aliceblue;
+  width: 2.5em;
+  height: 2.5em;
+}
