@@ -79,15 +79,7 @@ textarea:not([rows]) {
 
 /* -------end-reset------------------------ */
 
-.dice-button {
-  border: 1px solid mediumslateblue;
-  border-radius: .25rem;
-  background: none;
-  border: none;
-  color: inherit;
-  padding: 0;
-  margin: 0;
-} 
+
 
 /* -------root-tooling?----------------------*/
 :root {
@@ -100,6 +92,10 @@ html[data-weather="rain"] {
   --accent-alpha: 0.3;
 }
 
+html[data-time="sunset"] {
+  --bg: var(--bg);
+  --fg: var(--fg);
+}
 body {
   background: hsl(210, 40%, var(--sky-lightness));
 }
@@ -115,3 +111,4 @@ nav {
   width: 2.5em;
   height: 2.5em;
 }
+

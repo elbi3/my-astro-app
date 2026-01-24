@@ -1,11 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
-import { openWeatherFetch } from "../lib/weatherAPI.server.js";
-// let data = openWeatherFetch();
+// import { openWeatherFetch } from "../lib/weatherAPI.server.js";
+// let data = await openWeatherFetch();
 // let display = data.current;
-import { oneWeather } from "../lib/mockWeatherAPI.js"; //use mock data for now
-let forecast = oneWeather.weather[0].main;
-console.log("oneWeather.weather[0].main: ", oneWeather.weather[0].main);
+// import { oneWeather } from "../lib/mockWeatherAPI.js"; //use mock data for now
+// let forecast = oneWeather.weather[0].main;
+// console.log("In WeatherNav: oneWeather.weather[0].main: ", oneWeather.weather[0].main);
+const { fetchedWeather } = Astro.props;
+console.log("fetchedWeatherData.main.temp in WeatherNav: ", fetchedWeather);
 ---
 
 
@@ -15,7 +17,10 @@ console.log("oneWeather.weather[0].main: ", oneWeather.weather[0].main);
             <a href="/about">about</a>
         </li>
         <li>
-            <p>{forecast}</p>
+            <p>{fetchedWeather.weatherType}</p>
+            <p>K: {fetchedWeather.temp.k}</p>
+            <p>C: {fetchedWeather.temp.c}</p>
+            <p>F: {fetchedWeather.temp.f}</p>
         </li>
         <li>
             <Icon name="mdi:weather-night-partly-cloudy" class="nav-weather-icon" />

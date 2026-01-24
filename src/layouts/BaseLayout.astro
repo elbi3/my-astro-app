@@ -3,10 +3,38 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WeatherNav from "../components/WeatherNav.astro";
+// import { openWeatherFetch } from "../lib/weatherAPI.server.js";
+// let fetchedWeather = await openWeatherFetch();
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=3600, stale-while-revalidate=60"
+);
+
+// logic to set data-weather and data-time
+// weather options: clear, rain,
+// daytime options: day, sunrise, sunset, night (sunposition stuff?) (moon?)
+const weather = "clear";
+const dayTime = "day";
+
+let mockData =  {
+  weatherType: 'clouds',
+  weatherDesc: 'few clouds',
+  weatherIcon: '02d',
+  temp: { k: 276, c: 3, f: 38 },
+  tempFeelsLike: { k: 274, c: 1, f: 34 },
+  weatherHumidity: 70,
+  visibility: 10000,
+  wind: 2.06,
+  clouds: 20,
+  sunrise: 1769269494,
+  sunset: 1769302652,
+  weatherCode: 200
+}
 ---
 
 <!doctype html>
-<html lang="en" data-weather="rain">
+<html lang="en" data-weather={weather} data-time={dayTime}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -16,7 +44,7 @@ import WeatherNav from "../components/WeatherNav.astro";
 	</head>
 	<body>
 		<Header />
-		<WeatherNav />
+		 <WeatherNav fetchedWeather={ mockData } />
 		<slot />
 		<Footer />
 	</body>

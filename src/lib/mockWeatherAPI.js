@@ -113,3 +113,34 @@ export const oneWeather =  {
 //   name: 'Seattle',
 //   cod: 200
 // }
+
+const twoWeather =  {
+  coord: { lon: -122.3114, lat: 47.5794 },
+  weather: [ { id: 800, main: 'Clear', description: 'clear sky', icon: '01d' } ],
+  base: 'stations',
+  main: {
+    temp: 273.05,
+    feels_like: 271.22,
+    temp_min: 271.03,
+    temp_max: 274.81,
+    pressure: 1027,
+    humidity: 81,
+    sea_level: 1027,
+    grnd_level: 1016
+  },
+  visibility: 10000,
+  wind: { speed: 1.54, deg: 150 },
+  clouds: { all: 0 },
+  dt: 1769275727,
+  sys: {
+    type: 2,
+    id: 2079573,
+    country: 'US',
+    sunrise: 1769269494,
+    sunset: 1769302652
+  },
+  timezone: -28800,
+  id: 5809844,
+  name: 'Seattle',
+  cod: 200
+}
