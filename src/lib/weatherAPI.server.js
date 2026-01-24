@@ -18,9 +18,9 @@ export async function openWeatherFetch() {
     }
 
     const data = await res.json();
-// don't forget to make a cleaner function!
+
     console.log("In openWeatherFetch, data: ", data);
-    // return data;
+    // return data; --> instead we are returning a cleaned up data object
 
     function kelvinToC(k) {
         return Math.round(k - 273.15);
@@ -50,6 +50,5 @@ export async function openWeatherFetch() {
         clouds : data.clouds.all, //20
         sunrise: data.sys.sunrise, //1769269494
         sunset: data.sys.sunset, //1769302652
-        weatherCode : data.cod //200
     };
 }
