@@ -1,9 +1,8 @@
 <!-- with no "client" directive, this will default to static render (desired) -->
-
+<!-- add ratios and some sort of key to show that text is rarely white or black -->
+<!-- maybe color dots next to the ratio? really small icons? might get cluttered -->
+<!-- maybe base additional div content on its width? like if it's 40 ch wide add the ratios and dots? -->
 <template>
-    <header>
-        <h1>140 Color Names Supported By All Browsers</h1>
-    </header>
     <div class="content">
         <div class="light aliceblue">aliceblue</div>
         <div class="light antiquewhite">antiquewhite</div>
@@ -30,6 +29,7 @@
         <div class="mid darkcyan">darkcyan</div>
         <div class="mid darkgoldenrod">darkgoldenrod</div>
         <div class="light darkgray">darkgray</div>
+        <div class="light darkgray">darkgrey</div>
         <div class="dark darkgreen">darkgreen</div>
         <div class="light darkkhaki">darkkhaki</div>
         <div class="dark darkmagenta">darkmagenta</div>
@@ -41,11 +41,13 @@
         <div class="light darkseagreen">darkseagreen</div>
         <div class="dark darkslateblue">darkslateblue</div>
         <div class="dark darkslategray">darkslategray</div>
+        <div class="dark darkslategray">darkslategrey</div>
         <div class="light darkturquoise">darkturquoise</div>
         <div class="dark darkviolet">darkviolet</div>
         <div class="mid deeppink">deeppink</div>
         <div class="light deepskyblue">deepskyblue</div>
         <div class="dark dimgray">dimgray</div>
+        <div class="dark dimgray">dimgrey</div>
         <div class="mid dodgerblue">dodgerblue</div>
         <div class="dark firebrick">firebrick</div>
         <div class="light floralwhite">floralwhite</div>
@@ -56,6 +58,7 @@
         <div class="light gold">gold</div>
         <div class="mid goldenrod">goldenrod</div>
         <div class="mid gray">gray</div>
+        <div class="mid gray">grey</div>
         <div class="dark green">green</div>
         <div class="light greenyellow">greenyellow</div>
         <div class="light honeydew">honeydew</div>
@@ -73,12 +76,14 @@
         <div class="light lightcyan">lightcyan</div>
         <div class="light lightgoldenrodyellow">lightgoldenrodyellow</div>
         <div class="light lightgray">lightgray</div>
+        <div class="light lightgray">lightgrey</div>
         <div class="light lightgreen">lightgreen</div>
         <div class="light lightpink">lightpink</div>
         <div class="light lightsalmon">lightsalmon</div>
         <div class="mid lightseagreen">lightseagreen</div>
         <div class="light lightskyblue">lightskyblue</div>
         <div class="mid lightslategray">lightslategray</div>
+        <div class="mid lightslategray">lightslategrey</div>
         <div class="light lightsteelblue">lightsteelblue</div>
         <div class="light lightyellow">lightyellow</div>
         <div class="light lime">lime</div>
@@ -132,6 +137,7 @@
         <div class="light skyblue">skyblue</div>
         <div class="dark slateblue">slateblue</div>
         <div class="mid slategray">slategray</div>
+        <div class="mid slategray">slategrey</div>
         <div class="light snow">snow</div>
         <div class="mid springgreen">springgreen</div>
         <div class="mid steelblue">steelblue</div>
@@ -152,7 +158,7 @@
 <style scoped>
 .content {
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .dark,
@@ -160,6 +166,7 @@
 .mid {
     align-content: center;
     padding: .2rem;
+    min-width: 21ch;
 }
 
 .dark {
@@ -737,8 +744,16 @@
 .yellowgreen {
     background-color: yellowgreen;
 }
+
 h1 {
     line-height: 2;
     color: aliceblue;
+}
+
+@media(width <= 600px){
+    .content {
+        display: grid; 
+        grid-template-columns: 1fr 1fr;
+    }
 }
 </style>
