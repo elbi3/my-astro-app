@@ -16,30 +16,32 @@ Astro.response.headers.set(
 
 //---environment and facts, including weather and time, other global attributes
 //TO-DO: determine sunset (write function here)
-function sunlightCalc(sunrise, sunset){
-	//JavaScript uses ms, so adjust Unix timestamps:
-	const sunriseMs = sunrise * 1000;
-	const sunsetMs = sunset * 1000;
-	const dayLength = sunsetMs - sunriseMs;
-	const now = Date.now();
-	const MIN = 60 * 1000;
-	const DAWN_DURATION = 45 * MIN;
-	const MORNING_DURATION = 90 * MIN;
-	const DUSK_DURATION = 45 * MIN;
-	const PRE_SUNSET_GOLDEN = 90 * MIN;
-	const dawnStart = sunriseMs - DAWN_DURATION;
-	const morningEnd = sunriseMs + MORNING_DURATION;
-	const duskStart = sunsetMs - PRE_SUNSET_GOLDEN;
-	const duskEnd = sunsetMs + DUSK_DURATION;
+import sunlightCalc from "../lib/sunlightCalc";
+let dayPhase = sunlightCalc(fetchedWeather.sunrise, fetchedWeather.sunset);
+// function sunlightCalc(sunrise, sunset){
+// 	//JavaScript uses ms, so adjust Unix timestamps:
+// 	const sunriseMs = sunrise * 1000;
+// 	const sunsetMs = sunset * 1000;
+// 	const dayLength = sunsetMs - sunriseMs;
+// 	const now = Date.now();
+// 	const MIN = 60 * 1000;
+// 	const DAWN_DURATION = 45 * MIN;
+// 	const MORNING_DURATION = 90 * MIN;
+// 	const DUSK_DURATION = 45 * MIN;
+// 	const PRE_SUNSET_GOLDEN = 90 * MIN;
+// 	const dawnStart = sunriseMs - DAWN_DURATION;
+// 	const morningEnd = sunriseMs + MORNING_DURATION;
+// 	const duskStart = sunsetMs - PRE_SUNSET_GOLDEN;
+// 	const duskEnd = sunsetMs + DUSK_DURATION;
 
-	if(now < dawnStart) return "night";
-	if(now < sunriseMs) return "dawn";
-	if(now < morningEnd) return "morning";
-	if(now < duskStart) return "afternoon";
-	if(now < sunsetMs) return "dusk";
-	if(now < duskEnd) return "dusk";
-	return "night";
-};
+// 	if(now < dawnStart) return "night";
+// 	if(now < sunriseMs) return "dawn";
+// 	if(now < morningEnd) return "morning";
+// 	if(now < duskStart) return "afternoon";
+// 	if(now < sunsetMs) return "dusk";
+// 	if(now < duskEnd) return "dusk";
+// 	return "night";
+// };
 //TO-DO: determine day phase (write function here)(+ call sunset function)
 //TO-DO: determine weather state(write function that simplifies api weatherType)
 
@@ -47,8 +49,8 @@ function sunlightCalc(sunrise, sunset){
 // list: weather options: clear, rain,
 // list: daytime options: day, sunrise, sunset, night (sunposition stuff?) (moon?)
 //night, dawn, morning, afternoon, golden-hour, dusk
-const weather = "clear";
-const dayTime = "day";
+let dayTime = dayPhase ? dayPhase : "afternoon";
+let weather = "clear";
 
 //--dev-data-------------------------
 let mockData =  {

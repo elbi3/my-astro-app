@@ -2,9 +2,11 @@ export default function sunlightCalc(sunrise, sunset, timeNow=0){
 	//JavaScript uses ms, so adjust Unix timestamps:
 	const sunriseMs = sunrise * 1000;
 	const sunsetMs = sunset * 1000;
-	const dayLength = sunsetMs - sunriseMs;
+	const dayLength = sunsetMs - sunriseMs;//no need?
+    let now = timeNow ? timeNow : Date.now();
+    //no arg passed in through optional param? then get Date.Now()
 	// const now = Date.now();
-    const now = timeNow;
+    // const now = timeNow;
     console.log("sunrise: ", sunrise * 1000);
     console.log("sunset: ", sunset * 1000);
     console.log("Date.now: ", now);
@@ -52,7 +54,7 @@ export default function sunlightCalc(sunrise, sunset, timeNow=0){
 	return "night";
 };
 
-const sunriseTest = 1768665064;
-const sunsetTest = 1768697237
-let result = sunlightCalc(sunriseTest, sunsetTest);
-console.log("Result: ", result);
+// const sunriseTest = 1768665064;
+// const sunsetTest = 1768697237
+// let result = sunlightCalc(sunriseTest, sunsetTest);
+// console.log("Result: ", result);
