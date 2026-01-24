@@ -1,0 +1,41 @@
+---
+let { title, subtitle } = Astro.props;
+---
+
+<header class="home-header">
+    <h1>{title}</h1>
+    <p class="tagline">{subtitle}</p>
+</header>
+
+<style>
+    .home-header {
+        display: flex;
+        flex-direction: row;
+        max-height: 10vh;
+        background-color: whitesmoke;
+        color: rgb(3, 30, 36);
+        gap: 1em;
+        font-style: inherit;
+        font-family: inherit;
+    }
+    
+    h1,
+    p {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: bold;
+        font-size: 2rem;
+
+        margin-block-end: 0;
+        line-height: 1.1;
+    }
+
+    .tagline {
+        /* background-color: bisque; */
+        align-self: center;
+        font-size: 1em;
+        display: block;
+        padding: 0;
+        margin: 0;
+        flex: 1;
+    }
+</style>
