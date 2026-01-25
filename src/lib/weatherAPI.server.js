@@ -1,20 +1,40 @@
 export async function openWeatherFetch() {
-    const lat = import.meta.env.PUBLIC_WEATHER_LAT;
-    const lon = import.meta.env.PUBLIC_WEATHER_LON;
-    const apikey = import.meta.env.WEATHER_API_KEY;
+    // const lat = import.meta.env.PUBLIC_WEATHER_LAT;
+    // const lon = import.meta.env.PUBLIC_WEATHER_LON;
+    // const apikey = import.meta.env.WEATHER_API_KEY;
 
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}`;
+        const lat = process.env.WEATHER_LAT;
+        const lon = process.env.WEATHER_LON;
+        const apikey = process.env.WEATHER_API_KEY;
 
-    const res = await fetch(apiUrl,
-        {
-            headers: {
-                "Cache-Control": "public, max-age=3600",
-            }
-        }
-    );
+    if (!lat || !lon || !apikey) {
+        console.warn("Missing weather environment variables");
+        return null;
+    };
+
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather` +
+                    `?lat=${lat}&lon=${lon}&appid=${apikey}`;
+
+    let res;
+
+    try {
+        res = await fetch(apiUrl);
+    } catch(err){
+        console.warn("Weather fetch network error", err);
+        return null;
+    };
+
+    // const res = await fetch(apiUrl,
+    //     {
+    //         headers: {
+    //             "Cache-Control": "public, max-age=3600",
+    //         }
+    //     }
+    // );
 
     if(!res.ok) {
-        throw new Error("Weather fetch failed");
+        console.warn("Weather fetch failed: ", res.status);
+        return null;
     }
 
     const data = await res.json();
