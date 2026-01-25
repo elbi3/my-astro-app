@@ -9,48 +9,34 @@ import WeatherNav from "../components/WeatherNav.astro";
 import { openWeatherFetch } from "../lib/weatherAPI.server.js";
 let fetchedWeather = await openWeatherFetch();
 
-Astro.response.headers.set(
+Astro.response.headers.set( //does this need to be put before fetch? Does order matter?
 	"Cache-Control",
 	"public, max-age=3600, stale-while-revalidate=60"
 );
 
-//---environment and facts, including weather and time, other global attributes
-//TO-DO: determine sunset (write function here)
-import sunlightCalc from "../lib/sunlightCalc";
-let dayPhase = sunlightCalc(fetchedWeather.sunrise, fetchedWeather.sunset);
-// function sunlightCalc(sunrise, sunset){
-// 	//JavaScript uses ms, so adjust Unix timestamps:
-// 	const sunriseMs = sunrise * 1000;
-// 	const sunsetMs = sunset * 1000;
-// 	const dayLength = sunsetMs - sunriseMs;
-// 	const now = Date.now();
-// 	const MIN = 60 * 1000;
-// 	const DAWN_DURATION = 45 * MIN;
-// 	const MORNING_DURATION = 90 * MIN;
-// 	const DUSK_DURATION = 45 * MIN;
-// 	const PRE_SUNSET_GOLDEN = 90 * MIN;
-// 	const dawnStart = sunriseMs - DAWN_DURATION;
-// 	const morningEnd = sunriseMs + MORNING_DURATION;
-// 	const duskStart = sunsetMs - PRE_SUNSET_GOLDEN;
-// 	const duskEnd = sunsetMs + DUSK_DURATION;
+//---environment and facts, including weather and time, other global attributes---
+import sunlightCalc from "../lib/sunlightCalc.js";
+import weatherCalc from "../lib/weatherCalc.js";
 
-// 	if(now < dawnStart) return "night";
-// 	if(now < sunriseMs) return "dawn";
-// 	if(now < morningEnd) return "morning";
-// 	if(now < duskStart) return "afternoon";
-// 	if(now < sunsetMs) return "dusk";
-// 	if(now < duskEnd) return "dusk";
-// 	return "night";
-// };
-//TO-DO: determine day phase (write function here)(+ call sunset function)
-//TO-DO: determine weather state(write function that simplifies api weatherType)
+let dayTime = sunlightCalc(fetchedWeather.sunrise, fetchedWeather.sunset);
+let dayPhase = dayTime ? dayTime : "afternoon";
 
-// put here: logic to set data-time and data-weather
+let currentWeather = weatherCalc(fetchedWeather.weatherType);
+let weather = currentWeather ? currentWeather : "clear";
 // list: weather options: clear, rain,
 // list: daytime options: day, sunrise, sunset, night (sunposition stuff?) (moon?)
 //night, dawn, morning, afternoon, golden-hour, dusk
-let dayTime = dayPhase ? dayPhase : "afternoon";
-let weather = "clear";
+
+const WEATHER_ICONS = {
+	clear: "mdi:weather-sunny",
+	cloudy: "mdi:weather-cloudy",
+	wet: "mdi:weather-rainy",
+	storm: "mdi:weather-lightning",
+	snow: "mdi:weather-snowy",
+	fog: "mdi:weather-fog",
+};
+
+let myIcon = WEATHER_ICONS[weather];
 
 //--dev-data-------------------------
 let mockData =  {
@@ -69,7 +55,7 @@ let mockData =  {
 ---
 
 <!doctype html>
-<html lang="en" data-weather={weather} data-time={dayTime}>
+<html lang="en" data-weather={weather} data-time={dayPhase}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -79,7 +65,7 @@ let mockData =  {
 	</head>
 	<body>
 		<Header />
-		<WeatherNav fetchedWeather={ mockData } />
+		<WeatherNav fetchedWeather={mockData} time={dayPhase} weather={weather} icon={myIcon} />
 			<slot />
 		<Footer />
 	</body>
