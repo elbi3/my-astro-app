@@ -1,6 +1,6 @@
-import { openWeatherFetch } from "../../lib/weatherAPI.server";
+import { openWeatherFetch } from "../../lib/weatherAPI.server.js";
 
-export const onRequest = async () => {
+export const onRequestGet = async () => {
   try {
     const weather = await openWeatherFetch();
 
