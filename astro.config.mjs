@@ -8,5 +8,5 @@ export default defineConfig({
   output: "server", //enables SSR     
   site: "https://plant-kennel.me",
   adapter: cloudflare(),
-  integrations: [vue(), react(), icon()]
+  integrations: [vue(), react(), icon()],
 });

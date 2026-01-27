@@ -3,9 +3,9 @@ export async function openWeatherFetch() {
     // const lon = import.meta.env.PUBLIC_WEATHER_LON;
     // const apikey = import.meta.env.WEATHER_API_KEY;
 
-        const lat = process.env.WEATHER_LAT;
-        const lon = process.env.WEATHER_LON;
-        const apikey = process.env.WEATHER_API_KEY;
+        const lat = import.meta.env.WEATHER_LAT;
+        const lon = import.meta.env.WEATHER_LON;
+        const apikey = import.meta.env.WEATHER_API_KEY;
 
     if (!lat || !lon || !apikey) {
         console.warn("Missing weather environment variables");
@@ -15,15 +15,16 @@ export async function openWeatherFetch() {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather` +
                     `?lat=${lat}&lon=${lon}&appid=${apikey}`;
 
-    let res;
-
-    try {
-        res = await fetch(apiUrl);
-    } catch(err){
-        console.warn("Weather fetch network error", err);
-        return null;
-    };
-
+    const res = await fetch(apiUrl,
+        {
+            headers: {
+                "Authorization": `Bearer ${apikey}`,
+            }, 
+            cf: {
+                cacheTtl: 60 * 60,
+                cacheEverything: true,
+            },
+    });
     // const res = await fetch(apiUrl,
     //     {
     //         headers: {
@@ -39,7 +40,6 @@ export async function openWeatherFetch() {
 
     const data = await res.json();
 
-    console.log("In openWeatherFetch, data: ", data);
     // return data; --> instead we are returning a cleaned up data object
 
     function kelvinToC(k) {
