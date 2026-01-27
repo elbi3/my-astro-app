@@ -79,22 +79,64 @@ textarea:not([rows]) {
 
 /* -------end-reset------------------------ */
 
-.dice-button {
-  border: 1px solid mediumslateblue;
-  border-radius: .25rem;
-  background: none;
-  border: none;
-  color: inherit;
-  padding: 0;
-  margin: 0;
-} 
+
 
 /* -------root-tooling?----------------------*/
 :root {
   --sky-lightness: 92%;
+  /* how bright the sky feels, not what color - see body below */
+  --accent-alpha: 0.15;
+
+  --bg: #f6f7f8;
+  --fg: #1a1a1a;
+  --accent: #6b8cff;
+/* interaction & emphasis - how loud is it? */
+  --contrast: 1;
+  --saturation: 1;
+  /* how strong is the color relative to gray? */
+}
+
+/* daytime changes are with bg, fg, contrast. bg/fg are base pigments. */
+html[data-time="night"] {
+  --bg: hsl(210 30% 8%);
+  --fg: hsl(210 20% 92%);
+  --accent-alpha: 0.25;
+}
+
+/* html[data-time="dawn"] {
+  --sky-lightness: 60%;
+  background: var(--bg);
+  color: var(--fg);
+} */
+html[data-time="dawn"] {
+  --sky-lightness: 85%;
+  --contrast: 0.9;
+  --saturation: 0.85;
+}
+
+html[data-weather="cloudy"] {
+  --contrast: calc(var(--contrast) * 0.9);
+  --saturation: calc(var(--saturation) * 0.95);
+}
+html[data-time="morning"] {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+html[data-time="afternoon"] {
+  --bg: hsl(210 40% 94%);
+  --fg: hsl(210 20% 10%);
   --accent-alpha: 0.15;
 }
 
+html[data-time="dusk"] {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* weather modulates with contrast and saturation */
+/* contrast is value compression, and saturation is chroma strength */
+/* okay to add opacity for atmosphere thickness, and blur for air moisture later */
 html[data-weather="rain"] {
   --sky-lightness: 75%;
   --accent-alpha: 0.3;
@@ -115,3 +157,4 @@ nav {
   width: 2.5em;
   height: 2.5em;
 }
+

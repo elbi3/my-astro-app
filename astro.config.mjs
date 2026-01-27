@@ -1,11 +1,12 @@
 import { defineConfig } from 'astro/config';
+import cloudflare from "@astrojs/cloudflare";
 import vue from "@astrojs/vue";
+import react from "@astrojs/react";
 import icon from "astro-icon";
 
-import react from "@astrojs/react";
-
 export default defineConfig({
-  output: "static",
+  output: "server", //enables SSR     
   site: "https://plant-kennel.me",
+  adapter: cloudflare(),
   integrations: [vue(), react(), icon()]
 });

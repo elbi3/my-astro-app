@@ -2,6 +2,7 @@
 <!-- add ratios and some sort of key to show that text is rarely white or black -->
 <!-- maybe color dots next to the ratio? really small icons? might get cluttered -->
 <!-- maybe base additional div content on its width? like if it's 40 ch wide add the ratios and dots? -->
+ <!-- should this be called HTMLColors?? -->
 <template>
     <div class="content">
         <div class="light aliceblue">aliceblue</div>

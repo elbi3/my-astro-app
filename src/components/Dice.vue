@@ -58,9 +58,16 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .dice-button {
         width: 2.5em;
         height: 2.5em;
-    }
+        border: 1px solid mediumslateblue;
+        border-radius: .25rem;
+        background: none;
+        border: none;
+        color: inherit;
+        padding: 0;
+        margin: 0;
+    } 
 </style>

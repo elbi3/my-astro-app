@@ -1,23 +1,73 @@
 ---
-//environment and facts, including weather and time, other global attributes
+export const prerender = false;
+//---use layout for orchestration, not logic---
+//---components
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WeatherNav from "../components/WeatherNav.astro";
+
+//---weather api logic
+import { openWeatherFetch } from "../lib/weatherAPI.server.js";
+let fetchedWeather = await openWeatherFetch();
+
+Astro.response.headers.set( //does this need to be put before fetch? Does order matter?
+	"Cache-Control",
+	"public, max-age=3600, stale-while-revalidate=60"
+);
+
+//---environment and facts, including weather and time, other global attributes---
+import sunlightCalc from "../lib/sunlightCalc.js";
+import weatherCalc from "../lib/weatherCalc.js";
+
+let dayTime = sunlightCalc(fetchedWeather.sunrise, fetchedWeather.sunset);
+let dayPhase = dayTime ? dayTime : "afternoon";
+
+let currentWeather = weatherCalc(fetchedWeather.weatherType);
+let weather = currentWeather ? currentWeather : "clear";
+// list: weather options: clear, rain,
+// list: daytime options: day, sunrise, sunset, night (sunposition stuff?) (moon?)
+//night, dawn, morning, afternoon, golden-hour, dusk
+
+const WEATHER_ICONS = {
+	clear: "mdi:weather-sunny",
+	cloudy: "mdi:weather-cloudy",
+	wet: "mdi:weather-rainy",
+	storm: "mdi:weather-lightning",
+	snow: "mdi:weather-snowy",
+	fog: "mdi:weather-fog",
+};
+
+let myIcon = WEATHER_ICONS[weather];
+
+//--dev-data-------------------------
+let mockData =  {
+  weatherType: 'clouds',
+  weatherDesc: 'few clouds',
+  weatherIcon: '02d',
+  temp: { k: 276, c: 3, f: 38 },
+  tempFeelsLike: { k: 274, c: 1, f: 34 },
+  weatherHumidity: 70,
+  visibility: 10000,
+  wind: 2.06,
+  clouds: 20,
+  sunrise: 1769269494,
+  sunset: 1769302652,
+}
 ---
 
 <!doctype html>
-<html lang="en" data-weather="rain">
+<html lang="en" data-weather={weather} data-time={dayPhase}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Plant Kennel</title>
 	</head>
 	<body>
 		<Header />
-		<WeatherNav />
-		<slot />
+		<WeatherNav fetchedWeather={mockData} time={dayPhase} weather={weather} icon={myIcon} />
+			<slot />
 		<Footer />
 	</body>
 </html>
