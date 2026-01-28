@@ -8,7 +8,7 @@ import WeatherNav from "../components/WeatherNav.astro";
 
 //---weather api logic
 import { openWeatherFetch } from "../lib/weatherAPI.server.js";
-let fetchedWeather = await openWeatherFetch();
+let fetchedWeather = await openWeatherFetch(Astro.locals.runtime.env);
 
 Astro.response.headers.set( //does this need to be put before fetch? Does order matter?
 	"Cache-Control",
