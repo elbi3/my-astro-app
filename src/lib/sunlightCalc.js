@@ -1,5 +1,8 @@
 export default function sunlightCalc(sunrise, sunset, timeNow=0){
 	//JavaScript uses ms, so adjust Unix timestamps:
+    if(typeof sunrise === null) sunrise = 1768665064;
+    if(typeof sunset === null) sunset = 1768697237;
+    
 	const sunriseMs = sunrise * 1000;
 	const sunsetMs = sunset * 1000;
 	const dayLength = sunsetMs - sunriseMs;//no need?
