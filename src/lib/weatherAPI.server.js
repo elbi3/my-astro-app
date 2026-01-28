@@ -1,8 +1,6 @@
-import { getEnv } from "astro/env/server";
-
-const API_KEY = getEnv("WEATHER_API_KEY");
-const LAT = getEnv("WEATHER_LAT");
-const LON = getEnv("WEATHER_LON");
+const API_KEY = import.meta.env.WEATHER_API_KEY;
+const LAT = import.meta.env.WEATHER_LAT;
+const LON = import.meta.env.WEATHER_LON;
 
 console.log("Weather env check: ", {
     apiKey: !!API_KEY,
