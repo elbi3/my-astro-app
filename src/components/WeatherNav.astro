@@ -1,16 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
-// import { openWeatherFetch } from "../lib/weatherAPI.server.js";
-// let data = await openWeatherFetch();
-// let display = data.current;
-// import { oneWeather } from "../lib/mockWeatherAPI.js"; //use mock data for now
-// let forecast = oneWeather.weather[0].main;
-// console.log("In WeatherNav: oneWeather.weather[0].main: ", oneWeather.weather[0].main);
-const { fetchedWeather, time, weather, icon } = Astro.props;
 
-console.log("fetchedWeatherData.main.temp in WeatherNav: ", fetchedWeather);
+const { time, weather, icon } = Astro.props;
+console.log("time prop: ", time);
+console.log("weather prop: ", weather);
+// console.log("fetchedWeatherData.main.temp in WeatherNav: ", fetchedWeather);
+console.log("icon prop in WeatherNav", icon);
+
 ---
-
 
 <nav>
     <ul>
@@ -18,10 +15,6 @@ console.log("fetchedWeatherData.main.temp in WeatherNav: ", fetchedWeather);
             <a href="/about">about</a>
         </li>
         <li>
-            <p>{fetchedWeather.weatherType}</p>
-            <p>K: {fetchedWeather.temp.k}</p>
-            <p>C: {fetchedWeather.temp.c}</p>
-            <p>F: {fetchedWeather.temp.f}</p>
             <p>time calc: {time}</p>
             <p>weather calc: {weather}</p>
         </li>
