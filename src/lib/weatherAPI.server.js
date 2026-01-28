@@ -1,26 +1,25 @@
-export async function openWeatherFetch(env) {
-    // const lat = import.meta.env.PUBLIC_WEATHER_LAT;
-    // const lon = import.meta.env.PUBLIC_WEATHER_LON;
-    // const apikey = import.meta.env.WEATHER_API_KEY;
+const API_KEY = import.meta.env.WEATHER_API_KEY;
+const LAT = import.meta.env.WEATHER_LAT;
+const LON = import.meta.env.WEATHER_LON;
 
-        // const lat = import.meta.env.WEATHER_LAT;
-        // const lon = import.meta.env.WEATHER_LON;
-        // const apikey = import.meta.env.WEATHER_API_KEY;
-    const lat = env.WEATHER_LAT;
-    const lon = env.WEATHER_LON;
-    const apikey = env.WEATHER_API_KEY;
+console.log("Weather env check: ", {
+    apiKey: !!API_KEY,
+    lat: LAT,
+    lon: LON,
+});
 
-  if (!apikey || !lat || !lon) {
-    console.error("Missing weather environment variables", {
-      hasKey: !!apikey,
-      hasLat: !!lat,
-      hasLon: !!lon,
-    });
-    return null;
-  }
+if(!API_KEY || !LAT || !LON) {
+    console.warn(" ⚠️ Missing weather env vars", {
+        hasKey: !!API_KEY,
+        hasLat: !!LAT,
+        hasLon: !!LON,
+    });   
+}
+
+export async function openWeatherFetch() {
 
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather` +
-                    `?lat=${lat}&lon=${lon}&appid=${apikey}`;
+                    `?lat=${LAT}&lon=${LON}&appid=${API_KEY}`;
 
     let res;
     try {
@@ -35,13 +34,6 @@ export async function openWeatherFetch(env) {
         console.error("Weather fetch network error", err);
         return null;
     }
-    // const res = await fetch(apiUrl,
-    //     {
-    //         headers: {
-    //             "Cache-Control": "public, max-age=3600",
-    //         }
-    //     }
-    // );
 
     if(!res.ok) {
         console.warn("Weather fetch failed: ", res.status);

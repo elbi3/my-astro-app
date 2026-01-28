@@ -1,5 +1,4 @@
 ---
-export const prerender = false;
 //---use layout for orchestration, not logic---
 //---components
 import Header from "../components/Header.astro";
@@ -8,12 +7,7 @@ import WeatherNav from "../components/WeatherNav.astro";
 
 //---weather api logic
 import { openWeatherFetch } from "../lib/weatherAPI.server.js";
-let fetchedWeather = await openWeatherFetch(Astro.locals.runtime.env);
-
-Astro.response.headers.set( //does this need to be put before fetch? Does order matter?
-	"Cache-Control",
-	"public, max-age=3600, stale-while-revalidate=60"
-);
+let fetchedWeather = await openWeatherFetch();
 
 //---environment and facts, including weather and time, other global attributes---
 import sunlightCalc from "../lib/sunlightCalc.js";
@@ -25,9 +19,6 @@ let dayPhase = dayTime ? dayTime : "afternoon";
 let currentWeather = weatherCalc(fetchedWeather.weatherType);
 console.log("currentWeather: ", currentWeather);
 let weather = currentWeather ? currentWeather : "clear";
-// list: weather options: clear, rain,
-// list: daytime options: day, sunrise, sunset, night (sunposition stuff?) (moon?)
-//night, dawn, morning, afternoon, golden-hour, dusk
 
 const WEATHER_ICONS = {
 	clear: "mdi:weather-sunny",
@@ -67,6 +58,7 @@ let mockData =  {
 		<title>Plant Kennel</title>
 	</head>
 	<body>
+		<pre>{JSON.stringify(weather, null, 2)}</pre>
 		<Header />
 		<WeatherNav time={dayPhase} weather={weather} icon={myIcon} />
 			<slot />
