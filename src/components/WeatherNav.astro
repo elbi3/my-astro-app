@@ -3,9 +3,9 @@ export const prerender = false;
 import { Icon } from "astro-icon/components";
 
 const { time, weather, icon } = Astro.props;
-console.log("time prop: ", time);
-console.log("weather prop: ", weather);
-console.log("icon prop in WeatherNav", icon);
+// console.log("time prop: ", time);
+// console.log("weather prop: ", weather);
+// console.log("icon prop in WeatherNav", icon);
 
 ---
 
@@ -25,7 +25,6 @@ console.log("icon prop in WeatherNav", icon);
             <Icon name={icon} class="nav-weather-icon" />
         </li>
     </ul>
-
 </nav>
 
 <style>

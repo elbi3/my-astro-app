@@ -8,6 +8,14 @@
     "dist"
   ],
   "compilerOptions": {
+    "target":"es2020",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     "types": [
       "./worker-configuration.d.ts",
       "node"
