@@ -3,8 +3,10 @@ let { title, subtitle } = Astro.props;
 ---
 
 <header class="home-header">
-    <h1>{title}</h1>
-    <p class="tagline">{subtitle}</p>
+    <!-- <h1>{title}</h1> -->
+    <p>{typeof title === "object" ? "OBJ" : title}</p>
+    <!-- <p class="tagline">{subtitle}</p> -->
+    <p>{typeof subtitle === "object" ? "OBJ" : subtitle}</p>
 </header>
 
 <style>

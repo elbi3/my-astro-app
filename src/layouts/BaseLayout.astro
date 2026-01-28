@@ -23,6 +23,7 @@ let dayTime = sunlightCalc(fetchedWeather.sunrise, fetchedWeather.sunset);
 let dayPhase = dayTime ? dayTime : "afternoon";
 
 let currentWeather = weatherCalc(fetchedWeather.weatherType);
+console.log("currentWeather: ", currentWeather);
 let weather = currentWeather ? currentWeather : "clear";
 // list: weather options: clear, rain,
 // list: daytime options: day, sunrise, sunset, night (sunposition stuff?) (moon?)
@@ -53,6 +54,7 @@ let mockData =  {
   sunrise: 1769269494,
   sunset: 1769302652,
 }
+
 ---
 
 <!doctype html>
@@ -66,7 +68,7 @@ let mockData =  {
 	</head>
 	<body>
 		<Header />
-		<WeatherNav fetchedWeather={mockData} time={dayPhase} weather={weather} icon={myIcon} />
+		<WeatherNav time={dayPhase} weather={weather} icon={myIcon} />
 			<slot />
 		<Footer />
 	</body>
