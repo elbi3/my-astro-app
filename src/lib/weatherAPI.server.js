@@ -4,6 +4,12 @@ const API_KEY = getEnv("WEATHER_API_KEY");
 const LAT = getEnv("LAT");
 const LON = getEnv("LON");
 
+console.log("Weather env check: ", {
+    apiKey: !!API_KEY,
+    lat: LAT,
+    lon: LON,
+});
+
 if(!API_KEY || !LAT || !LON) {
     console.warn(" ⚠️ Missing weather env vars", {
         hasKey: !!API_KEY,
