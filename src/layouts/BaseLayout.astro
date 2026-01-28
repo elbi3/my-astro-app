@@ -7,12 +7,7 @@ import WeatherNav from "../components/WeatherNav.astro";
 
 //---weather api logic
 import { openWeatherFetch } from "../lib/weatherAPI.server.js";
-let fetchedWeather = await openWeatherFetch(Astro.locals.runtime.env);
-
-// Astro.response.headers.set( //does this need to be put before fetch? Does order matter?
-// 	"Cache-Control",
-// 	"public, max-age=3600, stale-while-revalidate=60"
-// );
+let fetchedWeather = await openWeatherFetch();
 
 //---environment and facts, including weather and time, other global attributes---
 import sunlightCalc from "../lib/sunlightCalc.js";
