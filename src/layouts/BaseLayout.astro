@@ -3,21 +3,25 @@
 //---components
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import WeatherNav from "../components/WeatherNav.astro";
-
+// import WeatherNav from "../components/WeatherNav.astro";
+import { Icon } from "astro-icon/components";
 //---weather api logic
-import { openWeatherFetch } from "../lib/weatherAPI.server.js";
-let fetchedWeather = await openWeatherFetch();
+import { fetchWeather } from "../lib/weather/index.ts";
+
+const weatherTS = await fetchWeather();
+console.log("weatherTS: ", weatherTS);
+// import { openWeatherFetch } from "../lib/weatherAPI.server.js";
+// let fetchedWeather = await openWeatherFetch();
 
 //---environment and facts, including weather and time, other global attributes---
 import sunlightCalc from "../lib/sunlightCalc.js";
 import weatherCalc from "../lib/weatherCalc.js";
 
-let dayTime = sunlightCalc(fetchedWeather.sunrise, fetchedWeather.sunset);
+let dayTime = sunlightCalc(weatherTS.sunrise, weatherTS.sunset);
 let dayPhase = dayTime ? dayTime : "afternoon";
 
-let currentWeather = weatherCalc(fetchedWeather.weatherType);
-console.log("currentWeather: ", currentWeather);
+let currentWeather = weatherCalc(weatherTS.weatherType);
+// console.log("currentWeather: ", currentWeather);
 let weather = currentWeather ? currentWeather : "clear";
 
 const WEATHER_ICONS = {
@@ -60,7 +64,24 @@ let mockData =  {
 	<body>
 		<pre>{JSON.stringify(weather, null, 2)}</pre>
 		<Header />
-		<WeatherNav time={dayPhase} weather={weather} icon={myIcon} />
+		<nav>
+			<ul>
+				<li>
+					<a href="/about">about</a>
+				</li>
+				<li>
+					<p>time calc: {dayPhase}</p>
+					<p>weather calc: {weather}</p>
+				</li>
+				<li>
+					<Icon name="mdi:weather-night-partly-cloudy" class="nav-weather-icon" />
+				</li>
+				<li>
+					<Icon name={myIcon} class="nav-weather-icon" />
+				</li>
+			</ul>
+		</nav>
+		<!-- <WeatherNav time={dayPhase} weather={weather} icon={myIcon} /> -->
 			<slot />
 		<Footer />
 	</body>
