@@ -1,3 +1,4 @@
+//happens in BaseLayout
 export default function weatherCalc(weatherType) {
     const d = weatherType.toLowerCase();//already lowercased in cleaner portion of api call
 
