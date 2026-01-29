@@ -19,9 +19,6 @@ const { time, weather, icon } = Astro.props;
             <p>weather calc: {weather}</p>
         </li>
         <li>
-            <Icon name="mdi:weather-night-partly-cloudy" class="nav-weather-icon" />
-        </li>
-        <li>
             <Icon name={icon} class="nav-weather-icon" />
         </li>
     </ul>
