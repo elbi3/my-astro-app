@@ -2,7 +2,7 @@
 export const prerender = false;
 import { Icon } from "astro-icon/components";
 
-const { time, weather, icon } = Astro.props;
+const { dayPhase, weather, myIcon } = Astro.props;
 ---
 
 <nav>
@@ -11,11 +11,11 @@ const { time, weather, icon } = Astro.props;
             <a href="/about">about</a>
         </li>
         <li>
-            <p>time calc: {time}</p>
+            <p>time calc: {dayPhase}</p>
             <p>weather calc: {weather}</p>
         </li>
         <li>
-            <Icon name={icon} class="nav-weather-icon" />
+            <Icon name={myIcon} class="nav-weather-icon" />
         </li>
     </ul>
 </nav>
