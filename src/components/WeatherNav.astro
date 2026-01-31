@@ -3,9 +3,17 @@ export const prerender = false;
 import { Icon } from "astro-icon/components";
 
 const { dayPhase, weather, myIcon } = Astro.props;
+
+let myWeatherNav = "nav-lt-mode";
+let navWeatherIcon = "nav-weather-icon";
+if((dayPhase === "morning") || (dayPhase === "dawn") || (dayPhase === "afternoon")) {
+    myWeatherNav = "nav-lt-mode";
+} else if((dayPhase === "night") || (dayPhase === "dusk")) {
+    myWeatherNav = "nav-dk-mode";
+}
 ---
 
-<nav>
+<nav class={myWeatherNav}>
     <ul>
         <li>
             <a href="/about">about</a>

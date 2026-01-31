@@ -3,15 +3,13 @@
 //---components
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-// import WeatherNav from "../components/WeatherNav.astro";
-import { Icon } from "astro-icon/components";
+import WeatherNav from "../components/WeatherNav.astro";
+
 //---weather api logic
 import { fetchWeather } from "../lib/weather/index.ts";
 
 const weatherTS = await fetchWeather();
 console.log("weatherTS: ", weatherTS);
-// import { openWeatherFetch } from "../lib/weatherAPI.server.js";
-// let fetchedWeather = await openWeatherFetch();
 
 //---environment and facts, including weather and time, other global attributes---
 import sunlightCalc from "../lib/sunlightCalc.js";
@@ -21,7 +19,6 @@ let dayTime = sunlightCalc(weatherTS.sunrise, weatherTS.sunset);
 let dayPhase = dayTime ? dayTime : "afternoon";
 
 let currentWeather = weatherCalc(weatherTS.weatherType);
-// console.log("currentWeather: ", currentWeather);
 let weather = currentWeather ? currentWeather : "clear";
 
 const WEATHER_ICONS = {
@@ -63,7 +60,8 @@ let mockData =  {
 	</head>
 	<body>
 		<Header />
-		<nav class="surface">
+		<WeatherNav dayPhase={dayPhase} weather={weather} myIcon={myIcon} />
+		<!-- <nav >
 			<ul>
 				<li>
 					<a href="/about">about</a>
@@ -76,10 +74,10 @@ let mockData =  {
 					<Icon name={myIcon} class="nav-weather-icon" />
 				</li>
 			</ul>
-		</nav>
+		</nav> -->
 		<!-- <WeatherNav time={dayPhase} weather={weather} icon={myIcon} /> -->
 			<slot />
-		<Footer class="surface"/>
+		<Footer />
 	</body>
 </html>
 
@@ -89,8 +87,6 @@ let mockData =  {
 		margin: 0;
 		width: 100%;
 		height: 100%;
-		/* display: flex;
-		flex-direction: column; */
 		display: grid;
 		grid-template-rows: 
 			auto

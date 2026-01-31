@@ -97,21 +97,13 @@ textarea:not([rows]) {
   --accent-pink: mediumorchid;
 }
 
-/* “This is the same color, but a different surface depth.” */
-/* .surface {
-  background-color: color-mix(
-    in oklab,
-    var(--bg),
-    var(--fg) calc(var(--surface-ratio) * 100%)
-  );
-} */
-
 /* daytime changes are with bg, fg, contrast. bg/fg are base pigments. */
 html[data-time="dusk"],
 html[data-time="night"] {
   background-color: var(--primary-bg-dk-mode);
   color: var(--primary-text-dk-mode);
 }
+
 html[data-time="morning"],
 html[data-time="dawn"],
 html[data-time="afternoon"] {
@@ -134,9 +126,6 @@ html[data-time="afternoon"] {
   --accent-alpha: 0.3;
 } */
 
-/* body {
-  background: hsl(210, 40%, var(--sky-lightness));
-} */
 
 /* -----nav-and-weather-icons------------------ */
 nav {
