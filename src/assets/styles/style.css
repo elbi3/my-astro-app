@@ -82,74 +82,74 @@ textarea:not([rows]) {
 
 
 /* -------root-tooling?----------------------*/
-:root {
-  --sky-lightness: 92%;
-  /* how bright the sky feels, not what color - see body below */
-  --accent-alpha: 0.15;
-
-  --bg: #f6f7f8;
-  --fg: #1a1a1a;
-  --accent: #6b8cff;
-/* interaction & emphasis - how loud is it? */
-  --contrast: 1;
-  --saturation: 1;
-  /* how strong is the color relative to gray? */
+:root { 
+/* Base pigments */
+  --primary-bg-dk-mode: midnightblue;
+  --primary-bg-lt-mode: aliceblue;
+  --primary-text-dk-mode: aliceblue;
+  --primary-text-lt-mode: midnightblue;
+  --secondary-bg-dk-mode: indigo;
+  --secondary-text-dk-mode: whitesmoke;
+  --secondary-bg-lt-mode: darkslateblue;
+  --secondary-text-lt-mode: whitesmoke;
+  --accent: slateblue;
+  --accent-lighter: mediumslateblue;
+  --accent-pink: mediumorchid;
 }
+
+/* “This is the same color, but a different surface depth.” */
+/* .surface {
+  background-color: color-mix(
+    in oklab,
+    var(--bg),
+    var(--fg) calc(var(--surface-ratio) * 100%)
+  );
+} */
 
 /* daytime changes are with bg, fg, contrast. bg/fg are base pigments. */
+html[data-time="dusk"],
 html[data-time="night"] {
-  --bg: hsl(210 30% 8%);
-  --fg: hsl(210 20% 92%);
-  --accent-alpha: 0.25;
+  background-color: var(--primary-bg-dk-mode);
+  color: var(--primary-text-dk-mode);
+}
+html[data-time="morning"],
+html[data-time="dawn"],
+html[data-time="afternoon"] {
+  --bg: aliceblue;
+  --fg: midnightblue;
+
+
 }
 
-/* html[data-time="dawn"] {
-  --sky-lightness: 60%;
-  background: var(--bg);
-  color: var(--fg);
-} */
-html[data-time="dawn"] {
-  --sky-lightness: 85%;
-  --contrast: 0.9;
-  --saturation: 0.85;
-}
-
-html[data-weather="cloudy"] {
+/* html[data-weather="cloudy"] {
   --contrast: calc(var(--contrast) * 0.9);
   --saturation: calc(var(--saturation) * 0.95);
-}
-html[data-time="morning"] {
-  background: var(--bg);
-  color: var(--fg);
-}
-
-html[data-time="afternoon"] {
-  --bg: hsl(210 40% 94%);
-  --fg: hsl(210 20% 10%);
-  --accent-alpha: 0.15;
-}
-
-html[data-time="dusk"] {
-  background: var(--bg);
-  color: var(--fg);
-}
+} */
 
 /* weather modulates with contrast and saturation */
 /* contrast is value compression, and saturation is chroma strength */
 /* okay to add opacity for atmosphere thickness, and blur for air moisture later */
-html[data-weather="rain"] {
+/* html[data-weather="rain"] {
   --sky-lightness: 75%;
   --accent-alpha: 0.3;
-}
+} */
 
-body {
+/* body {
   background: hsl(210, 40%, var(--sky-lightness));
-}
+} */
 
 /* -----nav-and-weather-icons------------------ */
 nav {
   min-height: 5vh;
   background-color: mediumslateblue;
+}
+.nav-lt-mode {
+  background-color: var(--secondary-bg-lt-mode);
+  color: var(--secondary-text-lt-mode);
+}
+.nav-dk-mode {
+  background-color: var(--secondary-bg-dk-mode);
+  color: var(--secondary-text-dk-mode);
 }
 
 .nav-weather-icon {
