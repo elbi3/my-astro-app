@@ -14,7 +14,7 @@
  /*prevent font size inflation*/
  /*color scheme dark*/
 html {
-  color-scheme: dark light;
+  /* color-scheme: dark light; */
   text-size-adjust: none; 
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
@@ -22,7 +22,6 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: rgb(3, 30, 36);
   line-height: 1.5;
 }
 
@@ -95,6 +94,7 @@ textarea:not([rows]) {
   --accent: slateblue;
   --accent-lighter: mediumslateblue;
   --accent-pink: mediumorchid;
+  --accent-lav: mintcream;
 }
 
 /* daytime changes are with bg, fg, contrast. bg/fg are base pigments. */
@@ -107,10 +107,8 @@ html[data-time="night"] {
 html[data-time="morning"],
 html[data-time="dawn"],
 html[data-time="afternoon"] {
-  --bg: aliceblue;
-  --fg: midnightblue;
-
-
+  background-color: var(--primary-bg-lt-mode);
+  color: var(--primary-text-lt-mode)
 }
 
 /* html[data-weather="cloudy"] {
@@ -135,15 +133,26 @@ nav {
 .nav-lt-mode {
   background-color: var(--secondary-bg-lt-mode);
   color: var(--secondary-text-lt-mode);
+  padding: .5rem;
 }
 .nav-dk-mode {
   background-color: var(--secondary-bg-dk-mode);
   color: var(--secondary-text-dk-mode);
+  padding: .5rem;
 }
 
 .nav-weather-icon {
-  color: aliceblue;
+  color: var(--accent-lav);
   width: 2.5em;
   height: 2.5em;
 }
 
+.home-header {
+  display: flex;
+  flex-direction: row;
+  max-height: 10vh;
+}
+
+.a-tag-icon {
+  color: var(--accent-lav);
+}
