@@ -1,9 +1,18 @@
 ---
 import { Icon } from "astro-icon/components";
 
+const { dayPhase } = Astro.props;
+let myWeatherNav = "nav-lt-mode";
+let navWeatherIcon = "nav-weather-icon";
+
+if((dayPhase === "morning") || (dayPhase === "dawn") || (dayPhase === "afternoon")) {
+    myWeatherNav = "nav-lt-mode";
+} else if((dayPhase === "night") || (dayPhase === "dusk")) {
+    myWeatherNav = "nav-dk-mode";
+}
 ---
 
-<footer class="home-footer">
+<footer class={myWeatherNav}>
     <ul>
         <li>
             <a href="https://github.com/elbi3"><Icon name="mdi:github" class="a-tag-icon" /></a>
@@ -15,12 +24,6 @@ import { Icon } from "astro-icon/components";
 </footer>
 
 <style>
-    .home-footer {
-        background-color: mediumslateblue;
-        color: inherit;
-        padding: .5rem;
-    }
-
     ul {
         display: flex;
         align-items: start;
@@ -29,10 +32,5 @@ import { Icon } from "astro-icon/components";
 
     li {
         list-style: none;
-    }
-
-    .a-tag-icon {
-        color: whitesmoke;
-        /* color: midnightblue; */
     }
 </style>

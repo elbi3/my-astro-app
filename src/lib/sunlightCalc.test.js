@@ -52,3 +52,8 @@ describe("my sunlightCalc function", () => {
 // 	if(now < duskEnd) return "dusk";
 // 	return "night";
 // };
+
+// const sunriseTest = 1768665064;
+// const sunsetTest = 1768697237
+// let result = sunlightCalc(sunriseTest, sunsetTest);
+// console.log("Result: ", result);

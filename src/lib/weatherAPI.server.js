@@ -1,3 +1,6 @@
+//OLD - KEEPING JUST IN CASE 
+//USE `fetchWeather` from weather/index.ts for type safety
+
 const API_KEY = import.meta.env.WEATHER_API_KEY;
 const LAT = import.meta.env.WEATHER_LAT;
 const LON = import.meta.env.WEATHER_LON;

@@ -2,27 +2,30 @@
 export const prerender = false;
 import { Icon } from "astro-icon/components";
 
-const { time, weather, icon } = Astro.props;
-// console.log("time prop: ", time);
-// console.log("weather prop: ", weather);
-// console.log("icon prop in WeatherNav", icon);
+const { dayPhase, weather, myIcon } = Astro.props;
+
+let myWeatherNav = "nav-lt-mode";
+let navWeatherIcon = "nav-weather-icon";
+
+if((dayPhase === "morning") || (dayPhase === "dawn") || (dayPhase === "afternoon")) {
+    myWeatherNav = "nav-lt-mode";
+} else if((dayPhase === "night") || (dayPhase === "dusk")) {
+    myWeatherNav = "nav-dk-mode";
+}
 
 ---
 
-<nav>
+<nav class={myWeatherNav}>
     <ul>
         <li>
             <a href="/about">about</a>
         </li>
         <li>
-            <p>time calc: {time}</p>
+            <p>time calc: {dayPhase}</p>
             <p>weather calc: {weather}</p>
         </li>
         <li>
-            <Icon name="mdi:weather-night-partly-cloudy" class="nav-weather-icon" />
-        </li>
-        <li>
-            <Icon name={icon} class="nav-weather-icon" />
+            <Icon name={myIcon} class="nav-weather-icon" />
         </li>
     </ul>
 </nav>

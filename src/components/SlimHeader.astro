@@ -2,15 +2,13 @@
 let { title, subtitle } = Astro.props;
 ---
 
-<header class="home-header">
-    <!-- <h1>{title}</h1> -->
-    <p>{typeof title === "object" ? "OBJ" : title}</p>
-    <!-- <p class="tagline">{subtitle}</p> -->
-    <p>{typeof subtitle === "object" ? "OBJ" : subtitle}</p>
+<header class="slim-header">
+    <h1>{title}</h1>
+    <p class="tagline">{subtitle}</p>
 </header>
 
 <style>
-    .home-header {
+    .slim-header {
         display: flex;
         flex-direction: row;
         max-height: 10vh;
@@ -32,7 +30,6 @@ let { title, subtitle } = Astro.props;
     }
 
     .tagline {
-        /* background-color: bisque; */
         align-self: center;
         font-size: 1em;
         display: block;
