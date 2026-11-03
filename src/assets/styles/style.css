@@ -87,7 +87,7 @@ textarea:not([rows]) {
   --primary-bg-lt-mode: aliceblue;
   --primary-text-dk-mode: aliceblue;
   --primary-text-lt-mode: midnightblue;
-  --secondary-bg-dk-mode: indigo;
+  --secondary-bg-dk-mode: rgb(36, 0, 62);
   --secondary-text-dk-mode: whitesmoke;
   --secondary-bg-lt-mode: darkslateblue;
   --secondary-text-lt-mode: whitesmoke;
