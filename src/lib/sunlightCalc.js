@@ -9,9 +9,9 @@ export default function sunlightCalc(sunrise, sunset, timeNow=0){
 	const dayLength = sunsetMs - sunriseMs;//no need?
     let now = timeNow ? timeNow : Date.now();
     //^no arg passed in through optional param? then get Date.Now()
-    console.log("sunrise: ", sunrise * 1000);
-    console.log("sunset: ", sunset * 1000);
-    console.log("Date.now: ", now);
+    // console.log("sunrise: ", sunrise * 1000);
+    // console.log("sunset: ", sunset * 1000);
+    // console.log("Date.now: ", now);
 	const MIN = 60 * 1000;
 	const DAWN_DURATION = 45 * MIN;
 	const MORNING_DURATION = 90 * MIN;
@@ -25,32 +25,32 @@ export default function sunlightCalc(sunrise, sunset, timeNow=0){
     let phase = "";
 	if(now < dawnStart) {
         phase = "night"
-        console.log("phase: ", phase);
+        // console.log("phase: ", phase);
         return phase;
     };
 	if(now < sunriseMs){
         phase = "dawn"
-        console.log("phase: ", phase);
+        // console.log("phase: ", phase);
         return phase;
     } 
 	if(now < morningEnd) {
         phase = "morning"
-        console.log("phase: ", phase);
+        // console.log("phase: ", phase);
         return phase;
     }
 	if(now < duskStart) {
         phase = "afternoon"
-        console.log("phase: ", phase);
+        // console.log("phase: ", phase);
         return phase;
     } 
 	if(now < sunsetMs) {
         phase = "dusk"
-        console.log("phase: ", phase);
+        // console.log("phase: ", phase);
         return phase;
     } 
 	if(now < duskEnd) {
         phase = "dusk"
-        console.log("phase: ", phase);
+        // console.log("phase: ", phase);
         return phase;
     } 
 	return "night";

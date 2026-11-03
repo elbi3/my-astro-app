@@ -7,21 +7,36 @@ import WeatherNav from "../components/WeatherNav.astro";
 //---weather api logic
 import { fetchWeather } from "../lib/weather/index.ts";
 
-const weatherTS = await fetchWeather();
-console.log("weatherTS: ", weatherTS);
+// const weatherTS = await fetchWeather();
+// console.log("weatherTS: ", weatherTS);
+
+//for dev:
+let weatherTS =  {
+    weatherType: "clouds",
+    weatherDesc: "overcast clouds",
+    weatherIcon: "04d",
+
+    temp: { k: 283, c: 10, f: 50 },
+    tempFeelsLike: { k: 283, c: 10, f: 50 },
+
+    humidity: 92,
+    clouds: 100,
+    sunrise: 1770046461,
+    sunset:1770081091,
+  };
 
 //---environment and facts, including weather and time, other global attributes---
 import sunlightCalc from "../lib/sunlightCalc.js";
 import weatherCalc from "../lib/weatherCalc.js";
 
 let dayTime = sunlightCalc(weatherTS.sunrise, weatherTS.sunset);
-let dayPhase = dayTime ? dayTime : "afternoon";
-
+// let dayPhase = dayTime ? dayTime : "afternoon";
+let dayPhase = "night";
 
 let currentWeather = weatherCalc(weatherTS.weatherType);
-let weather = currentWeather ? currentWeather : "clear";
-
-
+// let weather = currentWeather ? currentWeather : "clear";
+let weather = "clear";
+//fix the icons (sunny at night??)
 const WEATHER_ICONS = {
 	clear: "mdi:weather-sunny",
 	cloudy: "mdi:weather-cloudy",
